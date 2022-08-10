@@ -1,20 +1,20 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: './index.js',
   output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: 'main.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
   },
 
-  target: 'web',
   devServer: {
-    port: '3000',
-    static: ['./public'],
-    open: true,
-    hot: true,
-    liveReload: true,
+    // port: '3000',
+    contentBase: './build',
+    // open: true,
+    // hot: true,
+    // liveReload: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts'],
@@ -32,4 +32,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve('./index.html'),
+    }),
+  ],
 };
